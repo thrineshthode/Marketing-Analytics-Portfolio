@@ -1,17 +1,60 @@
 # Marketing ROI & Cohort Analytics Engine
 
-## 📊 Business Overview
-This project serves as a strategic tool for optimizing marketing budgets in an e-commerce environment. Using a year's worth of server logs (June 2017 – May 2018), the analysis identifies exactly where marketing spend is being wasted and which channels drive the highest customer loyalty.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/thrineshthode/Marketing-Analytics-Portfolio/blob/main/Marketing_ROI_Analysis.ipynb)
 
-## 🚀 Key Insights & Features
-- **Cohort Analysis:** Calculated retention rates across monthly cohorts, identifying a significant surge in activity during the November "Black Friday" period.
-- **Unit Economics (LTV & CAC):** Modeled the Lifetime Value (LTV) against Customer Acquisition Cost (CAC) to determine the "break-even" point for each ad source.
-- **Strategic Recommendations:** Found that **Source 1** and **Source 2** provide the most sustainable ROI, while recommending a phase-out of **Source 3** due to high acquisition costs.
+A full-funnel marketing analytics project that turns a year of e-commerce server logs into budget decisions — cohort retention, unit economics (LTV vs CAC), and return on marketing investment by ad source.
+
+## 📊 The Business Problem
+
+Marketing spend was spread across 7 ad sources with no clear view of which channels actually paid back. This analysis answers one question: **which sources are worth the money, and which are burning it?**
+
+## 📁 Dataset — June 2017 to May 2018
+
+| File | Size | Contents |
+|------|------|----------|
+| `data/visits_log_us.csv` | ~25 MB | 350,000+ sessions — timestamps, device, ad source per visit |
+| `data/orders_log_us.csv` | ~2.3 MB | Transactions — user ID, order time, revenue |
+| `data/costs_us.csv` | ~49 KB | 2,542 rows of daily marketing spend by ad source |
+
+## 🔬 Methodology
+
+1. **Examination & preprocessing** — validated schemas, zero missing values, cut memory footprint (strings → datetime/category, downcast numerics)
+2. **Exploratory analysis** — daily/weekly/monthly active users, sessions per day, session length, conversion funnels
+3. **Cohort analysis** — monthly retention heatmaps; activity surge around the November "Black Friday" period
+4. **Unit economics** — LTV vs CAC by cohort and by ad source, break-even analysis
+5. **ROMI modeling** — return on marketing investment by ad source and device
+
+## 📈 Key Findings
+
+- **Source 3** was the single most expensive channel — and had the lowest ROI of all.
+- Sources **2 and 3** had the highest customer acquisition cost; sources 4, 9, and 10 were the cheapest to acquire from.
+- **No cohort returned a profit** after acquisition costs — the acquisition model as it stands is not sustainable.
+- **Recommendation:** increase investment in sources **1, 2, and 9**; scale back or phase out sources **3, 10, 4, and 5**.
+
+## ▶️ Run It
+
+**Option 1 — no setup (recommended):** click the **Open in Colab** badge above.
+
+**Option 2 — locally:**
+```bash
+pip install pandas numpy matplotlib seaborn jupyter
+jupyter notebook Marketing_ROI_Analysis.ipynb
+```
 
 ## 🛠 Tech Stack
-- **Python:** Pandas (Data Cleaning), NumPy (Calculations)
-- **Visualization:** Seaborn, Matplotlib
-- **Statistical Analysis:** Cohort Heatmaps & ROMI Modeling
 
-## 📈 Results
-The analysis concluded that the current marketing model for specific sources was unsustainable. By reallocating budget from low-ROI channels (Source 3) to high-efficiency channels (Source 1 & 2), the business can significantly reduce its "Downtime Loss" in marketing capital.
+Python · Pandas · NumPy · Matplotlib · Seaborn · Jupyter
+
+## 📂 Project Structure
+
+```
+├── Marketing_ROI_Analysis.ipynb   # Full analysis: EDA → cohorts → LTV/CAC → ROMI
+├── data/
+│   ├── visits_log_us.csv          # Session logs
+│   ├── orders_log_us.csv          # Order transactions
+│   └── costs_us.csv               # Marketing spend by source
+└── README.md
+```
+
+---
+*Built as an end-to-end analytics case study: raw server logs in, marketing budget recommendations out.*
